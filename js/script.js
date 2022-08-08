@@ -40,3 +40,34 @@ if (isMobile.any()) {
 } else {
   document.body.classList.add("_pc");
 }
+
+const menuLinks = document.querySelectorAll(".menu__link[data-goto]");
+
+if (menuLinks.length > 0) {
+  menuLinks.forEach((menuLink) => {
+    menuLink.addEventListener("click", onMenuLinkClick);
+  });
+
+  function onMenuLinkClick(element) {
+    const menuLink = element.target;
+    if (
+      menuLink.dataset.goto &&
+      document.querySelector(menuLink.dataset.goto)
+    ) {
+      const gotoBlock = document.querySelector(menuLink.dataset.goto);
+      const gotoBlockValue =
+        gotoBlock.getBoundingClientRect().top +
+        pageYOffset -
+        document.querySelector("header").offsetHeight;
+
+      window.scrollTo({
+        top: gotoBlockValue,
+        behavior: "smooth",
+      });
+
+      event.preventDefault();
+    }
+  }
+}
+
+// console.log(document.querySelector(".menu__list").getBoundingClientRect());
