@@ -95,6 +95,44 @@ h6 {
     margin: 0 auto;
     padding: 0 15px;
 }
+/*----------------*/
+body._pc .menu__list > li:hover .menu__sub-list{
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0px, 0px);
+    pointer-events: all;
+}
+
+body._touch .menu__list > li {
+    display: flex;
+    align-items: center;
+}
+
+body._touch .menu__link {
+    flex: 1 1 auto;
+}
+
+body._touch .menu__arrow {
+    display: block;
+    width: 0;
+    height: 0; 
+    margin: 0 0 0 5px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 10px solid #fff;
+    transition: transform, opacity 0.3s ease 0s;
+} 
+
+body._touch .menu__list>li._active .menu__sub-list {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0px, 0px);
+    pointer-events: all;
+}
+
+body._touch .menu__list > li._active .menu__arrow {
+    transform: rotate(-180deg);
+}
 /*-------header-------*/
 .header {
     position: fixed;
@@ -164,6 +202,10 @@ h6 {
     text-decoration: underline;
 }
 
+.menu__arrow {
+    display: none;
+}
+
 @media (min-width: 767px) {
     .menu__list{
         display: flex;
@@ -179,7 +221,7 @@ h6 {
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
-        transition: all 0.3s ease 0s;
+        transition: opacity, transform 0.3s ease 0s;
     }
 }
 
