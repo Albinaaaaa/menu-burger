@@ -91,11 +91,15 @@ h6 {
 /*--------------------*/
 .wrapper {
     box-sizing: border-box;
-    width: 1230px;
+    max-width: 1230px;
     margin: 0 auto;
     padding: 0 15px;
 }
 /*----------------*/
+body._lock {
+    overflow: hidden;
+}
+
 body._pc .menu__list > li:hover .menu__sub-list{
     opacity: 1;
     visibility: visible;
@@ -223,6 +227,119 @@ body._touch .menu__list > li._active .menu__arrow {
         pointer-events: none;
         transition: opacity, transform 0.3s ease 0s;
     }
+}
+
+@media (max-width: 767px) {
+    .menu__icon._active span{
+        transform: scale(0);
+    }
+
+    .menu__icon._active::before {
+        top: 50%;
+        transform: rotate(-45deg) translate(0, -50%);
+    }
+
+    .menu__icon._active::after {
+        bottom: 50%;
+        transform: rotate(45deg) translate(0, 50%);
+    }
+
+    .menu__icon {
+        z-index: 5;
+        display: block;
+        position: relative;
+        width: 30px;
+        height: 18px;
+        cursor: pointer;
+    }
+
+    .menu__icon span,
+    .menu__icon::before,
+    .menu__icon::after {
+        left: 0;
+        position: absolute;
+        height: 10%;
+        width: 100%;
+        transition: transform 0.3s ease 0s;
+        background-color: #fff;
+    }
+
+    .menu__icon::before,
+    .menu__icon::after {
+        content: "";
+    }
+
+    .menu__icon::before {
+        top: 0;
+    }
+
+    .menu__icon::after {
+        bottom: 0;
+    }
+
+    .menu__icon span {
+        top: 50%;
+        transform: scale(1), translate(0px, -50%);
+    }
+
+    .menu__body {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        padding: 100px 30px 30px 30px;
+        transition: left 0.3s ease 0s;
+        overflow: auto;
+    }
+
+        .menu__body._active {
+            left: 0;
+        }
+
+    .menu__body::before {
+        content: "";
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        height: 70px;
+        background-color: rgb(156, 240, 174);
+        z-index: 10;
+    }
+
+    .menu__list > li._active .menu__sub-list{
+        display: block;
+    }
+
+    .menu__list > li {
+        flex-wrap: wrap;
+        margin: 0 0 30px 0;
+    }
+
+    .menu__list > li:last-child {
+        margin-bottom: 0;
+    }
+
+    .menu__link {
+        font-size: 24px;
+        color: #fff;
+    }
+
+    .menu__sub-list {
+        position: relative;
+        background-color: #fff;
+        flex: 1 1 100%;
+        margin: 20px 0 0 0;
+        display: none;
+    }
+
+    .menu__sub-link {
+        font-size: 20px;
+        color: #000;
+    }
+
 }
 
 /*-----------page---------*/
